@@ -1,6 +1,6 @@
 # DROP DATABASE IF EXISTS faf5;
 #CREATE DATABASE faf5;
-
+SET GLOBAL local_infile = 1;
 USE faf5;
 
 DROP TABLE IF EXISTS records_temp;
