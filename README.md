@@ -30,7 +30,6 @@ activate.bat
 ```
 Note: This step is optional but recommended. Make sure your virtual environment is active when running the project files. You can navigate back to /freighflo_repo, after you run activate.bat
 
-```
 ### Install Dependencies
 Install all required dependencies by running:
 ```bash
