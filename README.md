@@ -7,7 +7,8 @@ Follow the instructions below to set up the project environment and run it on yo
 Before you begin, ensure you have the following installed:
 - Python 3.9
 - pip
-- MySQL (or any other database you prefer, but the instructions below are provided for setting up MySQL.)
+- MySQL
+- MySQL Workbench
 
 ## Installation
 
@@ -15,14 +16,18 @@ Before you begin, ensure you have the following installed:
 To get started, clone this repository to your local machine:
 ```bash
 git clone https://github.com/gauthamnairvm/freightflo_repo.git
-cd freightflo
+cd freightflo_repo
 
 ```
 ### Setup Virtual Environment (Optional)
 It's recommended to use a virtual environment for Python projects to keep dependencies separate and organized. Here's how you can set up a virtual environment:
 ```bash
+#On windows cmd prompt.
 python -m venv env
-source env/bin/activate  # On Windows use `env\Scripts\activate`
+cd env
+cd Scripts
+cd activate.bat
+source env/bin/activate
 Note: This step is optional but recommended.
 
 ```
@@ -36,34 +41,56 @@ pip install -r requirements.txt
 ### Install MySQL
 If MySQL is not installed on your system, download and install it from the MySQL official website (https://dev.mysql.com/downloads/mysql/). Follow the installation guide suitable for your operating system.
 
-### Set Up MySQL Database
-Open MySQL Command Line Client. You will need to enter the root password that was set during the installation of MySQL.
-Create a new database:
-```bash
-CREATE DATABASE faf5;
+### Download and Install MySQL Workbench
+
+1. **Navigate to MySQL Downloads:** Visit the [MySQL Downloads Page](https://dev.mysql.com/downloads/workbench/).
+2. **Select the Version:** Choose the appropriate version of MySQL Workbench for your operating system (Windows, macOS, or Linux).
+3. **Download the Installer:** Click on the download link and follow the on-screen instructions. You might need to log in or sign up for an Oracle account, or you can choose to skip this by clicking "No thanks, just start my download."
+4. **Install MySQL Workbench:** Once downloaded, open the installer and follow the instructions to install MySQL Workbench on your computer.
+
+### Create a Connection in MySQL Workbench
+
+1. **Open MySQL Workbench:** Launch MySQL Workbench from your applications or programs list.
+2. **Create a New Connection:** Click on the "+" icon next to "MySQL Connections" to set up a new connection.
+3. **Configure the Connection:**
+   - **Connection Name:** Give your connection a name (e.g., "Local MySQL").
+   - **Hostname:** Enter `localhost` if your MySQL server is running on the same machine.
+   - **Port:** The default MySQL port is `3306`.
+   - **Username:** Enter the username (e.g., `root` or your MySQL username).
+   - **Password:** Click the "Store in Vault" button to save your password (optional but recommended for convenience).
+   - **Advanced Settings:** go to advanced options and type "OPT_LOCAL_INFILE=1" when creating the connection.
+4. **Test Connection:** Click "Test Connection" to ensure that all settings are correct and MySQL Workbench can connect to the MySQL server.
+5. **Confirm and Save:** If the test is successful, click "OK" to save the connection.
+
+**NOTE:It is important to follow proper setup of MySQL workbench for proper working of this project. Please follow the instructions thoroughly including the Advanced Settings**
+
+
+### Configure environment variables
+Update the `.env` file in your project directory with your database settings.
+```python 
+DATABASE_NAME="faf5"
+DATABASE_USER="root" #Replace with your actual username/ or use default root user
+DATABASE_PASSWORD="mypassword" #Replace with your actual password created during the setup
+DATABASE_HOST="localhost"
+DATABASE_PORT=3306  # Use the default MySQL port unless you have changed it.
 
 ```
 ### Run SQL Scripts
-After creating your database, you need to run the SQL scripts provided in the project to set up the tables and any initial data. These scripts are located in the `data/sql` folder within the project directory.
+After creating you set up MySQL workbench, you need to run the SQL scripts provided in the project to set up the tables and any initial data. These scripts are located in the `data/sql` folder within the project directory.
 
-Navigate to the directory where you cloned the repository, and then to the `data/sql` folder.
-Log into MySQL from the command line using your MySQL username (replace `yourusername` with your actual MySQL username or you can use the default root user that was setup during the installation):
+Once in workbench, you can open the scripts to a Query editor tab and run each SQL script file in the the following order.
 ```bash
-mysql -u yourusername -p faf5
+data_cleaning.sql;
+map_nodes.sql;
+map_edges.sql;
+map_node_weights.sql;
 
 ```
-Once logged in, run each SQL script file by using the SOURCE command in the following order.
-```bash
-SOURCE data_cleaning.sql;
-SOURCE map_nodes.sql;
-SOURCE map_edges.sql;
-SOURCE map_node_weights.sql;
-
-```
-NOTE: Please ensure that the scripts are run in the particular order mentioned above. Replace the paths to files in the queries with the correct and complete path location to your datafiles.
-
 Here is a list of files that are necessary to ensure proper working of the project:
-records.csv
+
+records.csv - This file can be downloaded from the official faf5 website [Freight Analysis Framework Version 5](https://faf.ornl.gov/faf5/Default.aspx). You can alternatively use the file `data/sample_records.csv` for a quick setup and later replace it with the downloaded file.
+
+Meta data files can be accesed at `data/` (Required):
 commodity.csv
 distance_bands.csv
 domestic_zones.csv
@@ -75,16 +102,12 @@ state_region_assoc.csv
 states.csv
 regions.csv
 
-### Configure Django to Use MySQL
-Update the `.env` file in your project directory with your database settings.
-```python 
-DATABASE_NAME=faf5
-DATABASE_USER=root #Replace with your actual username/ or use default root user
-DATABASE_PASSWORD=mypassword #Replace with your actual password created during the setup
-DATABASE_HOST=localhost
-DATABASE_PORT=3306  # Use the default MySQL port unless you have changed it.
+To set up the clique_edges table which you can run the provided python script `data/clique_processing.py` and it will create the table for you. Please make sure you run all the sql scripts first and ensure that interdf_records table is present in your database before running the script. Alternatively you can choose to import the `data/clique_edges.csv` file into a table called clique_edges in your database.
 
-```
+**NOTE: Please ensure that the scripts are run in the particular order mentioned above. Replace the paths to files in the queries with the correct and complete path location to your datafiles.**
+
+
+### Configure Django to Use MySQL
 ### Generate a Secret Key
 To generate a new secret key for your project, run the following command in your Python environment:
 ```python
@@ -94,7 +117,7 @@ print("SECRET_KEY='" + get_random_secret_key() + "'")
 ```
 Copy the output and paste it into your .env file for the SECRET_KEY variable.
 ```python
-SECRET_KEY = your_generated_key
+SECRET_KEY = "your_generated_key"
 
 ```
 ## Run the Project
@@ -117,4 +140,11 @@ python manage.py runserver
 ```
 Visit `http://127.0.0.1:8000` in your web browser to see the project running.
 
+### Code files summary
+`freightflo/fflo/templates/main_page.html` - Conatins the HTML template of the FREIGHFLO INTERFACE.
+`freightflo/fflo/static/scripts/` - Contains all the javascript scripts required to build the website.
+
 ### Contributors
+Trent Demers - ttd31@scarletmail.rutgers.edu
+Anish Budhi - akb147@scarletmail.rutgers.edu
+Gautham Nair - vn240@scarletmail.rutgers.edu
