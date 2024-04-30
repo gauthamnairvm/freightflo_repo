@@ -87,7 +87,8 @@ map_node_weights.sql;
 ```
 Here is a list of files that are necessary to ensure proper working of the project:
 
-records.csv - This file can be downloaded from the official faf5 website [Freight Analysis Framework Version 5](https://faf.ornl.gov/faf5/Default.aspx). You can alternatively use the file `data/sample_records.csv` for a quick setup and later replace it with the downloaded file.
+records.csv - This file can be downloaded from the official faf5 website [Freight Analysis Framework Version 5](https://faf.ornl.gov/faf5/Default.aspx). Click on the download link for the csv file FAF5.6 Regional database for 2018-2022 on the website.Zip File size at the time of creation of this document was ~132MB. The FAF5.5.1.csv file within this zipped folder contains the reuired data. 
+You can alternatively use the file `data/sample_records.csv` for a quick setup and later replace it with the downloaded file.
 
 Meta data files can be accesed at `data/` (Required):
 commodity.csv
