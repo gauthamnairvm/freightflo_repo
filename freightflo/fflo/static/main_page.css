@@ -1,0 +1,425 @@
+body, html {
+    width: 1920px;
+    font-family: Arial;
+    margin: 0px;
+}
+
+.flex-container{
+    display: flex;
+    justify-content: center;
+}
+
+br {
+    display: block;
+    content: "";
+    margin-top: 7.5pt;
+}
+
+table, th, td {
+    border: 1px solid black;
+    margin: auto
+  }
+
+  th, td {
+    padding: 5px;
+    text-align: center
+  }
+
+    #titletable{
+        display: table; 
+        background-color: black;
+        width: 100%;
+        height: 60px; 
+    }
+
+        #titlecell{
+            display: table-cell; 
+            vertical-align: middle;
+            padding-left: 2.5%;
+            height: 50px;
+        }
+
+            #title{
+                color: white;
+                font-size: 36px;
+                font-weight: bold;
+                margin: 10px;
+                margin-top: 20px;
+            }
+
+            #subtitle{
+                color: gray;
+                font-size: 20px;
+                font-weight: bold;
+                margin: 10px;
+                margin-bottom: 20px
+            }
+
+
+
+    .tabbar{
+        height: 50px; 
+        width: 100%
+    }
+
+        .tab {
+            background-color: #ff7621;
+            color: white;
+            float: left;
+            outline: none;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            height: 100%;
+            width: 25%;
+            overflow: hidden;
+            white-space: nowrap;
+            border-style: solid;
+            border-left-width: 2.5px;
+            border-right-width: 2.5px;
+        }
+
+            .tab:hover {
+                background-color: #9e4915 !important;
+            }
+
+.subpage {
+  display: none;
+  height: 100%;
+  width: calc(100% - 10px);
+  border-style: solid;
+  border-width: 5px;
+  border-color: black;
+  
+}
+
+    #home{
+        background-image: url('imgs/home_background.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-color: rgba(255, 255, 255, 0.35);
+        background-blend-mode: overlay;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+
+        #home-message{
+            width: 900px;
+            background-color: rgba(220, 220, 220, 1);
+            margin: auto;
+            padding: 20px;
+            border: solid;
+            border-width: 5px;
+            border-top-width: 0px;
+            border-bottom-width: 0px;
+            height: 800px;
+            overflow: scroll;
+            overflow-x: hidden;
+            text-align: left;
+        }
+
+    .section-label{
+        text-align: center;
+        background-color: black;
+        color: white;
+        padding: 10px;
+        padding-bottom: 15px;
+        font-size: 24px;
+        font-weight: bold;
+        margin: auto;
+    }
+
+    #map-label{
+        width: 1140px;
+    }
+
+    .filter-pane{
+        background-color: lightgray;
+        font-size: 12px;
+    }
+
+    .filter-select{
+        width: 200px;
+        background-color: white;
+    }
+
+    .button{
+        height: 30px;
+        margin: auto;
+        font-weight: bold;
+    }
+
+    .filter-side{
+        height: 710px;  
+        width: 20px;
+        float: left;
+    }
+
+    #filter-top{
+        height: 120px; 
+        width: 1150px;
+        margin: auto;
+        border: solid;
+        border-width: 5px;
+        border-top-width: 0px;
+        border-bottom-width: 0px;
+        align-items: center;
+    }
+        .filter-top-subpanel{
+            height: 60px;
+            align-items: center;
+            margin: auto;
+        }
+    
+        #edge-multiselect{
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+    
+        .select-box {
+            position: relative;
+        }
+        
+        .select-box select {
+            width: 100%; 
+            font-weight: normal; 
+        }
+        
+        .over-select {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+        
+        #checkboxes {
+            display: none;
+            border: 1px black;
+            background-color: white;
+            position: relative;
+            z-index: 1000;
+        }
+        
+        #checkboxes label {
+            display: block;
+        }
+        
+        #checkboxes label:hover {
+            background-color: #1e90ff;
+        }  
+
+    #map-container{
+        height: 710px; 
+        width: 1160px;
+        display: block;
+        margin: auto;
+    }
+
+        #filter-left{
+            border-left: solid;
+            border-left-width: 5px;
+        }
+
+        #map{
+            height: 700px;
+            width: 1100px;
+            float: left;
+            border: solid;
+            border-color: black;
+            border-width: 5px;    
+        }
+
+            #map-tooltip{
+                display: none;
+                position: absolute;
+                background-color: white;
+                border: solid;
+                border-radius: 2.5px;
+                border-width: 2.5px;
+                border-color: black;
+                padding: 5px;
+                z-index: 1001;
+                white-space: nowrap;
+                text-align: center;
+            }
+
+        #filter-right{
+            border-right: solid;
+            border-right-width: 5px;
+        }
+
+    #filter-bottom{
+        height: 170px; 
+        width: 1150px;
+        display: block;
+        margin: auto;
+        border: solid;
+        border-width: 5px;
+        border-top-width: 0px;
+        border-bottom-width: 0px;
+    }
+    
+        #legend-container{
+            width: 100%;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        #legend{
+            width: 1150px;
+        }
+
+        #slider-container{
+            height: 50px;
+            width: 100%;
+        }
+
+            .axis text{
+                fill: black;
+            }
+                
+            .axis line{
+                stroke: black;
+            }
+                
+            .axis {
+                font-size: 12px;
+            }
+
+            .track-fill{
+                stroke: black
+              }
+              
+            #legend rect {
+                stroke: black;
+                stroke-width: 2px;
+            }
+              
+        
+        #edge-filter-label {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px;
+        }
+  
+
+    #charts{
+        display: none;
+        width: 750px;
+    }
+
+        #chart-label{
+            width: 730px;
+        }
+
+        #chart-region{
+            width: 730px;
+            height: 85px;
+            background-color: rgb(232,232,232);
+            border: solid;
+            border-color: black;
+            border-width: 0px;
+            border-bottom-width: 5px;
+            font-size: 18px;
+            font-weight: normal;
+            color: black;
+            text-align: center;
+            vertical-align: top;
+            padding: 10px;
+            padding-bottom: 25px;
+            margin: 0px;
+        }
+
+        #commodity-chart{
+            height: 435px;
+            width: 750px;
+            border: solid;
+            border-width: 0px;
+            border-bottom-width: 5px;
+        }
+
+        #sub-charts{
+            display: flex;
+            justify-content: center;
+            width: 750px;
+        }
+
+            #mode-chart{
+                height: 435px;
+                width: 372.5px;
+                border: solid;
+                border-left-width: 0px;
+                border-right-width: 5px;
+                border-top-width: 0px;
+                border-bottom-width: 0px;
+            }
+        
+            #year-chart{
+                height: 435px;
+                width: 372.5px;
+            }
+
+#topkslider-container{
+    height: 50px;
+    width: 800px;
+    padding-top: 20px;
+}
+
+    .axis text{
+        fill: black;
+    }
+        
+    .axis line{
+        stroke: black;
+    }
+        
+    .axis {
+        font-size: 12px;
+    }
+
+    .track-fill{
+        stroke: black
+        }
+
+#top-k-slider-flex {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.top-k-select {
+    margin: auto;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.top-k-select br {
+    display: block;
+    content: "";
+    margin-top: 2.5pt;
+}
+
+#clique-mode {
+    background-color: #fffbfb; /* Default background color */
+    color: #0f0101; /* Text color */
+    border: 1px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for background color change */
+}
+
+/* Styling for the active state of the CliqueMode button */
+#clique-mode.active {
+    background-color: #ee6814; /* Orange background when active */
+}

@@ -1,0 +1,133 @@
+Numeric Label,Short Description,x,y
+11,Birmingham AL,741,463
+12,Mobile AL,721,533
+19,Rest of AL,746,493
+20,Alaska,144,570
+41,Phoenix AZ,223,439
+42,Tucson AZ,240,465
+49,Rest of AZ,230,415
+50,Arkansas,622,438
+61,Los Angeles CA,100,401
+62,Sacramento CA,64,269
+63,San Diego CA,117,440
+64,San Francisco CA,43,295
+65,Fresno CA,84,322
+69,Rest of CA,78,304
+81,Denver CO,382,311
+89,Rest of CO,351,323
+91,Hartford CT,978,212
+92,New York NY-NJ-CT-PA (CT Part),969,228
+99,Rest of CT,985,214
+101,Philadelphia PA-NJ-DE-MD (DE Part),934,278
+109,Rest of DE,941,294
+111,Washington DC-VA-MD-WV (DC Part),912,300
+121,Jacksonville FL-GA  CFS Area (FL Part),856,528
+122,Miami FL,907,632
+123,Orlando FL,873,570
+124,Tampa FL,849,589
+129,Rest of FL,852,554
+131,Atlanta GA,791,447
+132,Savannah GA,861,483
+139,Rest of GA,812,481
+151,Honolulu HI,321,614
+159,Rest of HI,358,629
+160,Idaho,218,173
+171,Chicago IL-IN-WI (IL Part),702,253
+172,St. Louis MO-IL (IL Part),667,331
+179,Rest of IL,679,295
+181,Chicago IL-IN-WI (IN Part),714,261
+182,Indianapolis IN,736,306
+183,Fort Wayne IN,749,272
+189,Rest of IN,733,277
+190,Iowa,596,255
+201,Kansas City MO-KS (KS Part),573,331
+202,Wichita KS,528,362
+209,Rest of KS,505,345
+211,Cincinnati OH-KY-IN (KY Part),771,325
+212,Louisville KY-IN (KY Part),749,343
+219,Rest of KY,761,362
+221,Baton Rouge LA,654,544
+222,Lake Charles-Jennings LA,616,551
+223,New Orleans LA-MS (LA Part),680,557
+229,Rest of LA,622,512
+230,Maine,1015,110
+241,Baltimore MD,919,289
+242,Washington DC-VA-MD-WV (MD Part),906,294
+249,Rest of MD,912,284
+251,Boston MA-RI-NH-CT (MA Part),1000,189
+259,Rest of MA,983,194
+261,Detroit MI,785,234
+262,Grand Rapids MI,742,226
+269,Rest of MI,755,201
+271,Minneapolis-St. Paul MN-WI (MN Part),600,184
+279,Rest of MN,578,148
+280,Mississippi,683,481
+291,Kansas City MO-KS (MO Part),582,327
+292,St. Louis MO-IL (MO Part),657,341
+299,Rest of MO,619,348
+300,Montana,314,121
+311,Omaha NE-IA (NE Part),549,275
+319,Rest of NE,487,269
+321,Las Vegas NV-AZ (NV Part),172,367
+329,Rest of NV,154,282
+331,Boston MA-RI-NH-CT (NH Part),996,176
+339,Rest of NH,983,161
+341,New York NY-NJ-CT-PA (NJ Part),955,244
+342,Philadelphia PA-NJ-DE-MD (NJ Part),944,268
+350,New Mexico,346,441
+361,Albany NY  CFS Area,949,194
+362,Buffalo NY  CFS Area,862,207
+363,New York NY-NJ-CT-PA (NY Part),962,240
+364,Rochester NY,881,198
+369,Rest of NY,922,196
+371,Charlotte NC-SC (NC Part),857,403
+372,Greensboro--Winston-Salem--High Point NC,868,381
+373,Raleigh-Durham NC,900,382
+379,Rest of NC,887,397
+380,North Dakota,474,121
+391,Cincinnati OH-KY-IN (OH Part),772,314
+392,Cleveland OH,816,253
+393,Columbus OH,795,293
+394,Dayton OH,777,301
+399,Rest of OH,798,270
+401,Oklahoma City OK,520,423
+402,Tulsa OK,555,403
+409,Rest of OK,519,401
+411,Portland OR-WA (OR Part),92,109
+419,Rest of OR,113,155
+421,Philadelphia PA-NJ-DE-MD (PA Part),938,265
+422,Pittsburgh PA-OH-WV (PA Part),849,273
+423,New York NY-NJ-CT-PA (PA Part),935,245
+429,Rest of PA,889,255
+441,Boston MA-RI-NH-CT (RI Part),996,209
+451,Charleston SC,883,460
+452,Greenville SC,828,420
+459,Rest of SC,858,438
+460,South Dakota,477,196
+471,Memphis TN-MS-AR (TN Part),675,425
+472,Nashville TN,733,397
+473,Knoxville TN,789,395
+479,Rest of TN,758,407
+481,Austin TX,515,537
+482,Beaumont TX,592,557
+483,Corpus Christi TX,521,613
+484,Dallas-Fort Worth TX-OK (TX Part),535,490
+485,El Paso TX-NM (TX Part),332,502
+486,Houston TX,568,566
+487,Laredo TX,476,620
+488,San Antonio TX,498,577
+489,Rest of TX,482,509
+491,Salt Lake City UT,255,267
+499,Rest of UT,255,311
+500,Vermont,962,156
+511,Richmond VA,912,337
+512,Virginia Beach-Norfolk VA-NC (VA Part),938,349
+513,Washington DC-VA-MD-WV (VA Part),906,308
+519,Rest of VA,885,338
+531,Seattle WA,115,56
+532,Portland OR-WA (WA Part),96,100
+539,Rest of WA,153,74
+540,West Virginia,842,320
+551,Milwaukee WI,695,223
+559,Rest of WI,660,191
+560,Wyoming,343,224

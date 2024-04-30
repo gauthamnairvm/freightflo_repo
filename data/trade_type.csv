@@ -1,0 +1,4 @@
+Numeric Label,Description
+1,Domestic flows (freight shipments moved from US domestic origins to US domestic destinations)
+2,Import flows (freight shipments moved from foreign origins to US domestic destinations)
+3,Export flows (freight shipments moved from US domestic origins to foreign destinations)

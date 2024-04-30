@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<head>
+    <link href="../static/main_page.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/cytoscape-canvas/dist/cytoscape-canvas.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
+    <script src="https://cdn.plot.ly/plotly-2.29.1.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>
+</head>
+
+<body>
+
+    <div id="titletable">
+        <div id="titlecell">
+            <p id="title">FreightFlo</p>
+            <p id="subtitle">Interactive Freight Analysis</p>
+        </div>
+    </div>
+
+    <div class="tabbar">
+        <button id='hometab' class="tab" style='background-color: hsl(23, 77%, 35%);'onclick="openPage('home', this)">Home</button>
+        <button id='domestictab' class="tab" onclick="openPage('domestic', this)">Domestic Freight</button>
+        <button id='fimporttab' class="tab" onclick="openPage('fimport', this)">Foreign Imports</button>
+        <button id='fexporttab' class="tab" onclick="openPage('fexport', this)">Foreign Exports</button>
+    </div>
+
+    <div id="home" class="subpage" style="display: block">
+
+        <div id="home-message">
+            <h1 style="font-size: 42px; text-align: center;">Welcome to FreightFlo!</h1>
+
+            <h2 style="text-align: left;">Introduction</h2>
+
+                The purpose of this application is to visualize freight movements within the USA. 
+                The data used for this project was sourced from the <a href="https://faf.ornl.gov/faf5/Default.aspx">Freight Analysis Framework 5</a> (FAF5). 
+                Essentially, each record in this dataset tracks the tonnage and monetary value (in USD) of every possible combination of origin, destination, commodity, mode of transportation, and year.
+                The origins and destinations specified in the dataset are defined at a "domestic zone" level, which can be a city or region within a state.
+                This application has taken these domestic zones and transformed them into a hierarchy that associates each domestic zone with the appropriate state, and each state with the apprpriate region in the USA.
+                This data is not limited to domestic freight movements, as it also includes foreign imports and exports.
+                This is tracked by subdividing the rest of the world into eight foreign zones.
+                Records for foreign imports and exports include both a port-of-entry into, or port-of-exit from, the USA in addition to the domestic destination or origin.<br>
+            
+                The main view this application provides is a map with a graph overlay.
+                This graph encodes each region, state, or domestic zone as a node in the graph, and each edge represents freight movements between two nodes.
+                Color is used to represent a certain metric of these freight movements, which can either be the tonnage, monetary value (in USD), or USD per ton.
+                The color of a node represents that metric of freight movements within a certain region, state, or domestic zone, and the color of an edge represent that metric for freight movements between the two nodes adajacent to that edge.
+                This makes for quick comparison between different origin/destination pairs of freight movements.<br>
+                
+                The auxiliary view for this application is a collection of three charts that breakdown freight movements by commodity, mode, and year.
+                These charts initially show the breakdown for all freight movements within the USA.
+                However, when certain regions are highlighted using some of the controls this application provides, the charts will update to only show freight movements that concern the highlighted origins/destinations.
+                Depending on the number of elements highlighted, these charts will add traces to allow for comparisons between these elements.
+            
+            <h2 style="text-align: left;">Controls</h2>
+
+                FreightFlo offers many ways for users to interact with the data. 
+                Other than expected interactions, such as panning, zooming, tooltips, and changing the metric (tons, USD, USD per ton), there are many different buttons, filters, and highlighting modes that the user can toggle to change the behavior of the map and charts. 
+                These are documented below.<br>
+
+                <h3 style="text-align: left;">Buttons</h3>
+
+                    <ul style="text-align: left;">
+                        <li><b>Show Regions:</b> Reset the map to show region level nodes</li>
+                        <li><b>Show States:</b> Reset the map to show state level nodes</li>
+                        <li><b>Show Zones:</b> Reset the map to show domestic zone level nodes</li>
+                        <li><b>Show/Hide Cliques:</b> Toggle to focus on connectivity in high tonnage/value areas across commodities, modes, or years. A "perfect clique" where each node is connected to every other node is indicated with green edges (Domestic Freight)</li>
+                        <li><b>Show/Hide Ports:</b> Toggle whether or not edges show freight movements to ports of entry/exit or their final destinations (Foreign Imports/Exports)</li>
+                        <li><b>Show/Hide Charts:</b> Toggle whether or not charts are shown</li>
+                    </ul><br>
+
+                <h3 style="text-align: left;">Filters</h3>
+
+                    <ul style="text-align: left;">
+                        <li><b>Commodity/Mode/Year Filter:</b> Update the map and charts to reflect freight movements by the specified commodity, mode, or year</li>
+                        <li><b>Edge Weight Filter:</b> Out of all possible edges between node visible on the map, only show those whose weights are within the specific range (Does not impact charts)</li>
+                        <li><b>Top/Bottom K Filter:</b> Out of all possible edges between node visible on the map, only show those whose weights are in the top/bottom k for the current metric (Does not impact charts)</li>
+                        <li><b>To/From Filter:</b> Only show edges to/from the specified nodes</li>
+                    </ul><br>
+
+                <h3 style="text-align: left;">Map Interactions</h3>
+
+                    <ul style="text-align: left;">
+                        <li><b>Left Click on Node:</b> Drill down the selected node to a lower level of aggregation (Region → State → Domestic Zone)</li>
+                        <li><b>Right Click on Node:</b> Drill up the selected node to a higher level of aggregation (Domestic Zone → State → Region)</li>
+                        <li><b>ALT + Left Click on Node:</b> Highlight all adjacent edges (Unlimited selections + Does not update charts)</li>
+                        <li><b>CTRL + Left Click on Node:</b> Highlight all incoming edges (Maximum two selections + Updates charts unless ALT is held)</li>
+                        <li><b>SHIFT + Left Click on Node:</b> Highlight all outgoing edges (Maximum two selections + Updates charts unless ALT is held)</li>
+                        <li><b>CTRL + SHIFT + Left Click on Node:</b> Highlight freight movements within a node (Maximum two selections + Updates charts unless ALT is held)</li>
+                        <li><b>Left Click on Edge:</b> Highlight selected edge (Maximum two selections + Updates charts unless ALT is held)</li>
+                        <li><b>ALT + Left Click on Edge:</b> View imports/exports from the selected port (Foreign Imports/Exports + Port Mode)</li>
+                    </ul><br>
+                
+        </div>
+        
+    </div>
+
+    <div id="freight" class="subpage">
+
+        <div id="map-chart-container" class="flex-container">
+
+            <div id="map-filters">
+
+                <div id="map-label" class="section-label">Map Overview: Freight Movements by Tonnage</div>
+
+                <div id="filter-top" class="filter-pane">
+
+                    <div id="filter-top-upper" class="filter-pane filter-top-subpanel flex-container">
+
+                        <button id="show-regions" class="filter-select button" onclick="forceRegionDrillDown()">Show Regions</button>
+                        
+                        <button id="show-states" class="filter-select button" onclick="forceStateDrillDown()">Show States</button>
+
+                        <button id="show-zones" class="filter-select button" onclick="forceZoneDrillDown()">Show Zones</button>
+
+                        <button id="show-ports" class="filter-select button" style="display: none;" onclick="showPorts()">Show Ports</button>
+
+                        <button id="hide-ports" class="filter-select button" style="display: none;" onclick="hidePorts()">Hide Ports</button>
+
+                        <button id="show-cliques" class="filter-select button" style="display: none;" onclick="toggleCliqueMode(true)">Show Cliques</button>
+
+                        <button id="hide-cliques" class="filter-select button" style="display: none;" onclick="toggleCliqueMode(false)">Hide Cliques</button>
+
+                        <button id="show-charts" class="filter-select button" onclick="showCharts()">Show Charts</button>
+
+                        <button id="hide-charts" class="filter-select button" style="display: none;" onclick="hideCharts()">Hide Charts</button>
+
+                    </div>
+
+                    <div id="filter-top-middle" class="filter-pane filter-top-subpanel flex-container">
+    
+                        <div class="top-k-select">
+                            <label for="top-k">Commodity/Mode/Year Filter</label><br>
+                            <select id="subcategory-select" class="filter-select" onchange="filterMapByCategory()"></select>   
+                        </div>
+
+                        <div class="top-k-select">
+                            <label for="top-k">Metric</label><br>
+                            <select id="edge-weight-select" class="filter-select" onchange="updateEdgeWeights()">
+                                <option value="tons" selected>Tons</option>
+                                <option value="usd">USD</option>
+                                <option value="usd_per_ton">USD per Ton</option>
+                            </select>   
+                        </div>
+                        
+                        <div class="top-k-select">
+                            <label for="top-k">From-Location Filter</label><br>
+                            <select id="from" class="filter-select" onchange="searchMap()">
+                            </select>   
+                        </div>
+
+                        <div class="top-k-select">
+                            <label for="top-k">To-Location Filter</label><br>
+                            <select id="to" class="filter-select" onchange="searchMap()">
+                            </select>   
+                        </div>
+
+                    </div>
+    
+                </div>
+    
+                <div id="map-container">
+    
+                    <div id="filter-left" class="filter-pane filter-side"></div>
+
+                    <div id="map">
+                        <!-- <div id="map-tooltip">
+                            <p id="tooltip-content"></p>
+                        </div> -->
+                    </div>
+    
+                    <div id="filter-right" class="filter-pane filter-side"></div>
+    
+                </div>
+                
+                <div id="filter-bottom" class="filter-pane">
+    
+                    <div id="legend-container">
+                        <svg id="legend"></svg>
+                    </div>
+    
+                    <div id="slider-container">
+                        <div id="slider-range" class="flex-container"></div>
+                    </div>
+
+                    <div id="top-k-slider-flex" class="flex-container">
+
+                        <div class="top-k-select">
+                            <label for="top-k">Toggle K-Filter?</label><br>
+                            <input type="checkbox" id="top-k-toggle" onchange="toggleTopKFilter()">   
+                        </div>
+                        <div class="top-k-select">
+                            <label for="top-k" id = 'top-k-label' style="color: rgba(0, 0, 0, 0.5);">Top-K</label><br>
+                            <input type="radio" id="top-k" name="top-bottom" value="top" onchange="toggleTopKFilterMode()" checked disabled>   
+                        </div>
+                        <div class="top-k-select">
+                            <label for="bottom-k" id = 'bottom-k-label' style="color: rgba(0, 0, 0, 0.5);">Bottom-K</label><br>
+                            <input type="radio" id="bottom-k" name="top-bottom" value="bottom" onchange="toggleTopKFilterMode()" disabled>
+                        </div>
+
+                        <div id="topkslider-container" style="opacity: 0.5;">
+                            <div id="topkslider-range" class="flex-container"></div>
+                        </div>
+
+                    </div>                
+    
+                </div>               
+
+            </div>
+
+            <div id="charts">
+
+                <div id="chart-label" class="section-label">Chart Overview</div>
+
+                <div id="chart-region" class="section-label"></div>
+
+                <div id="commodity-chart" class="chart"></div>
+
+                <div id="sub-charts">
+
+                    <div id="mode-chart" class="chart"></div>
+                    <div id="year-chart" class="chart"></div>
+
+                </div>
+
+                
+
+            </div>
+
+        </div>
+
+        
+    </div>
+
+    <div id="references" class="subpage"></div>
+    
+    <div id="map-tooltip"><p id="tooltip-content"></p></div>
+
+    <script src="../static/scripts/main_page.js"></script>
+    <script src="../static/scripts/df_map.js"></script>
+    <script src="../static/scripts/fi_map.js"></script>
+    <script src="../static/scripts/fe_map.js"></script>
+    <script src="../static/scripts/chart.js"></script> 
+    <script src="../static/scripts/map.js"></script>
+
+</body>

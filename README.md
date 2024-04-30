@@ -63,7 +63,17 @@ SOURCE map_node_weights.sql;
 NOTE: Please ensure that the scripts are run in the particular order mentioned above. Replace the paths to files in the queries with the correct and complete path location to your datafiles.
 
 Here is a list of files that are necessary to ensure proper working of the project:
-
+records.csv
+commodity.csv
+distance_bands.csv
+domestic_zones.csv
+foreign_zones.csv
+trade_type.csv
+transportation_mode.csv
+zone_state_assoc.csv
+state_region_assoc.csv
+states.csv
+regions.csv
 
 ### Configure Django to Use MySQL
 Update the `.env` file in your project directory with your database settings.
@@ -89,8 +99,10 @@ SECRET_KEY = your_generated_key
 ```
 ## Run the Project
 ### Apply Migrations
-Before running the server, you need to apply migrations to your database. This ensures that any Django model changes are properly reflected in the database schema.Navigate to the freightflo folder with the `manage.py` script:
+Before running the server, you need to apply migrations to your database. This ensures that any Django model changes are properly reflected in the database schema.Navigate to the freightflo folder with the `manage.py` script and run the following commands:
+
 ```bash
+python manage.py makemigrations
 python manage.py migrate
 
 ```
