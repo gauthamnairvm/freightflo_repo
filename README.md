@@ -106,6 +106,29 @@ To set up the clique_edges table which you can run the provided python script `d
 
 **NOTE: Please ensure that the scripts are run in the particular order mentioned above. Replace the paths to files in the queries with the correct and complete path location to your datafiles.**
 
+**FOR EXAMPLE:** In the `data/sql/data_cleaning.sql` script
+```sql
+-- REPLACE {path_to_your_files} with your actual path.
+LOAD DATA LOCAL
+    INFILE '{path_to_your_files}\records.csv'
+    INTO TABLE records_temp
+    FIELDS TERMINATED BY ','
+    LINES TERMINATED BY '\n'
+    IGNORE 1 LINES;
+```
+Add the complete path, and correct file name for records.csv, depending on which file you decide to use sample_data/ downloaded data from the wesite.
+
+For other metadata file loads, you can use the complete path to the location to which freightflo_repo was cloned to, and navigate to `data` folder to fetch the files.
+
+```sql
+LOAD DATA LOCAL
+-- REPLACE {path_to_freightflo_repo} with your actual path
+    INFILE '{path_to_freightflo_repo}\data\commodity.csv'
+    INTO TABLE commodity
+    FIELDS TERMINATED BY ','
+    LINES TERMINATED BY '\n'
+    IGNORE 1 LINES;
+```
 
 ### Configure Django to Use MySQL
 ### Generate a Secret Key
@@ -143,6 +166,7 @@ Visit `http://127.0.0.1:8000` in your web browser to see the project running.
 ### Code files summary
 `freightflo/fflo/templates/main_page.html` - Conatins the HTML template of the FREIGHFLO INTERFACE.
 `freightflo/fflo/static/scripts/` - Contains all the javascript scripts required to build the website.
+`freightflo/fflo/static/scripts/`
 
 ### Contributors
 Trent Demers - ttd31@scarletmail.rutgers.edu
