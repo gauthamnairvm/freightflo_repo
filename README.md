@@ -102,7 +102,14 @@ state_region_assoc.csv
 states.csv
 regions.csv
 
-To set up the clique_edges table which you can run the provided python script `data/clique_processing.py` and it will create the table for you. Please make sure you run all the sql scripts first and ensure that interdf_records table is present in your database before running the script. Alternatively you can choose to import the `data/clique_edges.csv` file into a table called clique_edges in your database.
+To set up the clique_edges table which you can run the provided python script `data/clique_processing.py` and it will create the table for you. Please make sure you run all the sql scripts first and ensure that interdf_records table is present in your database before running the script.
+Note: If you face the following error:
+```bash
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+```
+Edit the database configuration variables to hardcode your database details.
+
+Alternatively you can choose to import the `data/clique_edges.csv` file into a table called clique_edges in your database.
 
 **NOTE: Please ensure that the scripts are run in the particular order mentioned above. Replace the paths to files in the queries with the correct and complete path location to your datafiles.**
 
