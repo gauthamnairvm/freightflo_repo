@@ -1,7 +1,7 @@
 # Freightflo Project
 
 ## Overview
-Follow the instructions below to set up the project environment and run it on your local machine for development and testing.
+Follow the instructions below to set up the project environment and run it on your local machine for development and testing. You can access the FREIGHTFLO Interface hosted on AWS at http://freightflo.info/
 
 ## Prerequisites
 Before you begin, ensure you have the following installed:
