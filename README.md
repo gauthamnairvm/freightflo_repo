@@ -26,9 +26,9 @@ It's recommended to use a virtual environment for Python projects to keep depend
 python -m venv env
 cd env
 cd Scripts
-cd activate.bat
-source env/bin/activate
-Note: This step is optional but recommended.
+activate.bat
+```
+Note: This step is optional but recommended. Make sure your virtual environment is active when running the project files. You can navigate back to /freighflo_repo, after you run activate.bat
 
 ```
 ### Install Dependencies
