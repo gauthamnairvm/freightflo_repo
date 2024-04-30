@@ -15,7 +15,7 @@ Before you begin, ensure you have the following installed:
 To get started, clone this repository to your local machine:
 ```bash
 git clone https://github.com/gauthamnairvm/freightflo_repo.git
-cd freightflo
+cd freightflo```
 
 ```
 ### Setup Virtual Environment (Optional)
